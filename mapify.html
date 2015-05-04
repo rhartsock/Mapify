@@ -1,0 +1,65 @@
+<!Doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+		<meta charset="utf-8">
+		<title>Mapify</title>
+		<link rel=StyleSheet href="fp.css" type="text/css">
+		<script src="mapUpdate.js"></script>
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry,weather&sensor=false"></script>
+	</head>
+	
+	<body onload="codeAddress()"> 
+		<div class="title">
+			<h1>Mapify</h1>
+		</div>
+		<div class="one"> 
+			<h3> Geocode </h3>
+			<form>
+				Address: <input id="address" type="textbox" value="UMSL"><br/>
+				Latitude/Longitude<br/>
+				<input type="text" id="lat" name="lat" style="width: 230px;"> <br/>
+				
+				<input id ="useAddressBox" type="radio" name="addressSource" checked="true" onclick="codeAddress()"> 
+				Use Address Box<br/>
+				<input id ="useCoord" type="radio" name="addressSource" onclick="codeAddress()"> 
+				Use Lat/Lng<br/>
+				<input id ="useLocation" type="radio" name="addressSource" onclick="codeAddress()"> 
+				Use Location<br/>
+				<input type="button" name="submit" value="Map!" onclick="codeAddress()"><br>
+				<h3>View Options</h3>
+
+				Map Style: <br>
+				<input id="street" type="radio" name="mapType" value="street" checked="true" onclick="changeMapStyle()">Street<br/>
+				<input id="satellite" type="radio" name="mapType" value="satellite" onclick="changeMapStyle()">Satellite<br/>
+				<input id="hybrid" type="radio" name="mapType" value="hybrid" onclick="changeMapStyle()">Hybrid<br/>
+				<input id="terrain" type="radio" name="mapType" value="terrain" onclick="changeMapStyle()">Terrain<br/>
+				<br>
+
+				Marker Actions: <br>
+				<input id="bounce" type="radio" name="animation" value="bounce" onclick="changeAnimation()">Bounce<br/>
+				<input id="drop" type="radio" name="animation" value="drop" onclick="changeAnimation()">Drop</br>
+				<input id="none" type="radio" name="animation" value="none" checked="true" onclick="changeAnimation()">None</br>
+				
+				Zoom: <br>
+				<!--This input type is only supported by HTML5 browsers and later, otherwise it appears as a text box-->
+				<input id="zoom" type="range" min="3" max ="21" step="1" value="10" onchange="changeZoom()"><br/>	
+
+				<h3>View Data</h3>
+				Current Weather: <br/>
+				<input id ="weatherOn" type="radio" name="weather" value="weatherOn" onclick="showWeather()">On<br/>
+				<input id ="weatherOff" type="radio" name="weather" value="weatherOff" checked="true" onclick="showWeather()">Off<br/>
+				<br/>
+				Show Earthquakes:<br/>
+				<input id="hourQuake" type="radio" name="Earthquakes" value="Earthquakes" onclick="whichEarthquakeData()">Occurred over the past hour<br/>
+				<input id="dayQuake" type="radio" name="Earthquakes" value="Earthquakes" onclick="whichEarthquakeData()">Occurred over the past day<br/>
+				<input id="weekQuake" type="radio" name="Earthquakes" value="Earthquakes" onclick="whichEarthquakeData()">Occurred over the past week<br/>
+				<input id="monthQuake" type="radio" name="Earthquakes" value="Earthquakes" onclick="whichEarthquakeData()">2.5+ magnitude that occurred over the past month<br/>
+				<input id="quakeOff" type="radio" name="Earthquakes" value="Earthquakes" onclick="codeAddress()">Turn Data Off<br/>
+				<i>(all Earthquake data is received from usgs.gov and is updated regularly)</i>
+
+		</div>
+
+		<div id="map-canvas"></div>
+	</body>
+</html>
